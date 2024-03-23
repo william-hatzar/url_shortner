@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SizedBox(height: 80),
-          const TitleWidget(text: "Advanced Statistics", fontSize: 25),
+          TitleWidget(text: advancedStatistics, fontSize: 25),
           const SizedBox(height: 25),
           Padding(
             padding: const EdgeInsets.only(left: 15, right: 15),
@@ -96,19 +96,19 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 80),
           FeatureWidget(
-              title: "Brand Recognition",
+              title: brandRecognition,
               paragraph: paragraph3,
-              imagePath: "images/icon-brand-recognition.svg"),
+              imagePath: brandRecognitionImagePath),
           GreenHorizontalLine(height: 75, width: 10),
           FeatureWidget(
-              title: "Detailed Records",
+              title: detailedRecords,
               paragraph: paragraph4,
-              imagePath: "images/icon-detailed-records.svg"),
+              imagePath: detailedRecordsImagePath),
           GreenHorizontalLine(height: 75, width: 10),
           FeatureWidget(
-              title: "Fully Customizable",
+              title: fullyCustomisable,
               paragraph: paragraph5,
-              imagePath: "images/icon-fully-customizable.svg"),
+              imagePath: fullyCustomisableImagePath),
           const SizedBox(height: 50),
           const BoostLinksWidget(),
           FooterLinksBuilder()

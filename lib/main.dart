@@ -11,7 +11,6 @@ class Root extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
-
     );
   }
 }

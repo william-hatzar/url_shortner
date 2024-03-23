@@ -11,77 +11,87 @@ class URLListViewBuilder extends StatefulWidget {
 }
 
 class _URLListViewBuilderState extends State<URLListViewBuilder> {
+  late String copiedUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    copiedUrl = "";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: List.generate(
         widget.urls.length,
-            (index) =>
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Container(
-                alignment: Alignment.center,
-                height: 150,
-                width: 350,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                padding: EdgeInsets.all(14.0),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        widget.urlInput.text,
-                        style: const TextStyle(
-                          fontFamily: "Poppins",
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    const Divider(color: Color(0xffE6E6E6), thickness: 2),
-                    const SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        widget.urls[index],
-                        style: const TextStyle(
-                          fontFamily: "Poppins",
-                          color: Color(0xff58C3BC),
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    GestureDetector(
-                      onTap: () {
-                        Clipboard.setData(ClipboardData(text: widget.urls[index]));
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 40,
-                        width: 315,
-                        decoration: BoxDecoration(
-                          color: const Color(0xff2AD1D1),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        child: const Text(
-                          "Copy",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: "Poppins",
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            (index) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Container(
+            alignment: Alignment.center,
+            height: 150,
+            width: 350,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
             ),
+            padding: EdgeInsets.all(14.0),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    widget.urlInput.text,
+                    style: const TextStyle(
+                      fontFamily: "Poppins",
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+                const Divider(color: Color(0xffE6E6E6), thickness: 2),
+                const SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    widget.urls[index],
+                    style: const TextStyle(
+                      fontFamily: "Poppins",
+                      color: Color(0xff58C3BC),
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                GestureDetector(
+                  onTap: () {
+                    Clipboard.setData(ClipboardData(text: widget.urls[index]));
+                    setState(() {
+                      copiedUrl = widget.urls[index];
+                    });
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 40,
+                    width: 315,
+                    decoration: BoxDecoration(
+                      color: copiedUrl == widget.urls[index] ? Colors.grey : const Color(0xff2AD1D1),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    child: Text(
+                      copiedUrl == widget.urls[index] ? "Copied" : "Copy",
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontFamily: "Poppins",
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
